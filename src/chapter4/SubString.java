@@ -23,6 +23,13 @@ public class SubString {
         String result = new String(b);
         return result;
     }
+    static int a = 1;
+
+
+    void test(){
+        subString("",1,2);
+        System.out.println(a);
+    }
 
     public static void main(String[] args){
         System.out.println("请输入字符串：");
