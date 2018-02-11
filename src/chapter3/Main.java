@@ -18,11 +18,12 @@ class Number{
             }else if(a.charAt(i)>b.charAt(i)){
                 return 1;
             }
-            i++;
         }
         return 0;
     }
-    public String getMaxNum(List<Integer> numList,int count){
+/*
+   递归调用来获取最大整数，但是当字符串较多时，效率严重不足
+   public String getMaxNum(List<Integer> numList,int count){
         if(numList.size()==1){
             return numList.get(0).toString();
         }
@@ -39,6 +40,21 @@ class Number{
             }
         }
         return max;
+    }*/
+/*
+* 采用冒泡排序的方法来得到最大整数
+* */
+    public String getMaxNum(List<Integer> numList){
+        numList.sort((o1,o2) -> {
+            String o1Str = o1.toString();
+            String o2Str = o2.toString();
+            return (-1)*compare(o1Str+o2Str,o2Str+o1Str);
+        });
+        String maxNumStr = new String();
+        for(Integer num:numList){
+            maxNumStr += num;
+        }
+        return maxNumStr;
     }
 }
 
@@ -64,7 +80,7 @@ public class Main{
         scanner.close();
         List<String> maxNumList = new ArrayList();
         for(Number num:list){
-            maxNumList.add(num.getMaxNum(num.numList,num.count));
+            maxNumList.add(num.getMaxNum(num.numList));
         }
         for(String maxNum:maxNumList){
             System.out.println(maxNum);
